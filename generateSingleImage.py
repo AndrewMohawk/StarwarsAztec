@@ -7,7 +7,6 @@ import numpy as np
 
 # Get the list of files in the barcodes folder
 files = os.listdir("barcodes")
-#files.sort()
 
 number_barcode_images = len(files)
 print(f"Found {number_barcode_images} barcode images")
@@ -51,7 +50,6 @@ for file in files:
     image = cv2.resize(image, (output_barcode_width,output_barcode_height))
 
     # Get the description by taking everything after the first - 
-    #description = file.split("-")[1]
     description = file[file.find("-")+1:]
     description = description.replace(".png", "")
     description = description.replace("_", " ")
@@ -63,23 +61,19 @@ for file in files:
         y += (output_text_spacing * current_row)
 
     
-    print(f"current_row: {current_row}, current_column: {current_column}, x: {x}, y: {y}")
+    #print(f"current_row: {current_row}, current_column: {current_column}, x: {x}, y: {y}")
     
     # print image details
-    #output_image[x:x+output_barcode_width,y:y+output_barcode_height] = image
     output_image[y:y+output_barcode_height,x:x+output_barcode_width] = image
     
     # Add the text to the output image
-    # Lets add the description in a box at the bottom of the image
-    # First we need to calculate the size of the text
     font = cv2.FONT_HERSHEY_SIMPLEX
     fontScale = 1
     fontColor = (255,255,255)
     lineType = 2
     lineHeight = 30
+
     # Lets line wrap the description text for the image
-    # We will do this by splitting the description into words and then adding them to a line until the line is too long
-    # Then we will add the line to the list of lines and start a new line
     words = description.split(" ")
     lines = []
     current_line = ""
@@ -99,12 +93,6 @@ for file in files:
         textY = y + output_barcode_height + lineHeight + (lines.index(line) * lineHeight) + 10
         cv2.putText(output_image, line, (textX,textY), font, fontScale, fontColor, lineType)
     
-    
-    
-    
-
-    #cv2.putText(output_image, description, (x, y+100+output_barcode_spacing), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA)
-
     # Increment the current column
     current_column += 1
 

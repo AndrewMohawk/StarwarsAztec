@@ -3,7 +3,7 @@ import sys
 import json 
 from aztec_code_generator import AztecCode
 
-apk_decompile_path = "/Users/andrewmohawk/Private/disney/apk/disney_latest/com.disney.playdisneyparks.goo_2.24.0-30091_minAPI26(arm64-v8a,armeabi-v7a,x86,x86_64)(nodpi)_apkmirror.com"
+apk_decompile_path = "<APK_DECOMPILE_PATH>"
 version = "93"
 apk_file = f"{apk_decompile_path}/assets/firestore-db/starWarsGalaxysEdgeGame_{version}_installation-data.json"
 
